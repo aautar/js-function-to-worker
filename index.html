@@ -4,37 +4,9 @@
 
     <head>
 
-
+        <script src="function-worker-executor.js"></script>
+        
         <script type="text/javascript">
-
-            const FunctionWorkerExecutor = {
-
-                execute: function(fn, param) {
-
-                    return new Promise(resolve => {
-
-                        var paramStr = ``;
-                        if(param) {
-                            paramStr = JSON.stringify(param);
-                        }
-
-                        const fnString = `
-                            ((${fn.toString()})(${paramStr})).then(function(r) { postMessage(r); });
-                        `;
-
-                        const workerFuncUrl = URL.createObjectURL(new Blob([ fnString ]));
-                        const worker = new Worker(workerFuncUrl);
-
-                        worker.onmessage = function(msg) {
-                            resolve(msg.data);
-                        };
-
-                    });
-                }
-
-            };
-
-
             FunctionWorkerExecutor.execute(
                 function(input) {
                     return new Promise((resolve) => {
@@ -47,7 +19,6 @@
             ).then((r) => {
                 console.log(r);    
             });
-
         </script>
 
     </head>
