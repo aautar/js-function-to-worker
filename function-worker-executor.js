@@ -8,7 +8,7 @@ const FunctionWorkerExecutor = {
      * 
      * The Promise returned by this method will resolve when: 
      *     (1) fn resolves
-     *     (2) message indicating completion is recived from the spawned worker
+     *     (2) message indicating completion is received from the spawned worker
      * 
      * @param {Function} fn 
      * @param {Object} param 
